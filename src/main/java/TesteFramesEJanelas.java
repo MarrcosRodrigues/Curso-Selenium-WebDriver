@@ -31,9 +31,9 @@ public class TesteFramesEJanelas {
 		dsl.entrarFrame("frame1");
 		dsl.clicarBotao("frameButton");
 		String msg = dsl.alertaObterTextoEAceita();
-		Assert.assertEquals("Frame OK!", msg);
+		Assert.assertEquals("Frame OK!", msg);	
 	}
-	
+
 	@Test
 	public void deveInteragirComFrameEscondido() {
 		WebElement frame = driver.findElement(By.id("frame2"));
@@ -57,7 +57,7 @@ public class TesteFramesEJanelas {
 
 	@Test
 	public void deveinteragirComJanelasSemTitulo() {
-		
+
 		dsl.clicarBotao("buttonPopUpHard");
 		System.out.println(driver.getWindowHandle());
 		System.out.println(driver.getWindowHandles());
