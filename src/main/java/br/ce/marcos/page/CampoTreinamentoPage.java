@@ -1,14 +1,10 @@
+package br.ce.marcos.page;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class CampoTreinamentoPage {
+import br.ce.marcos.core.BasePage;
 
-	private DSL dsl;
+public class CampoTreinamentoPage extends BasePage {
 
-	public CampoTreinamentoPage(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		dsl = new DSL(driver);
-	}
 
 	public void setNome(String nome) {
 		dsl.escrever("elementosForm:nome", nome);

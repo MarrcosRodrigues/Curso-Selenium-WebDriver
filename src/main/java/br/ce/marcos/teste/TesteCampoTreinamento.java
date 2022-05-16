@@ -1,3 +1,7 @@
+package br.ce.marcos.teste;
+import static br.ce.marcos.core.DriverFactory.getDriver;
+import static br.ce.marcos.core.DriverFactory.killDriver;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -6,29 +10,26 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
+
+import br.ce.marcos.core.DSL;
 
 public class TesteCampoTreinamento {
 
-	private WebDriver driver;
 	private DSL dsl;
 
 	@Before
 	public void inicializa() {
-		driver = new EdgeDriver();
-		driver.manage().window().setSize(new Dimension(1000, 720));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
 
 	}
 
 	@After
 	public void finaliza() {
-//		driver.quit();
+		killDriver();
+		
 	}
 
 	@Test
@@ -122,12 +123,12 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void testJavaScript() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 //		js.executeScript("alert('Testando js via selenium')");
 		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via js'");
 		js.executeScript("document.getElementById('elementosForm:sobrenome').type = 'radio'");
 
-		WebElement element = driver.findElement(By.id("elementosForm:nome"));
+		WebElement element = getDriver().findElement(By.id("elementosForm:nome"));
 		js.executeScript("arguments[0].style.border = arguments[1]", element, "solid 4px red");
 	}
 

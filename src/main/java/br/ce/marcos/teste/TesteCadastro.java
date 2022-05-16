@@ -1,27 +1,21 @@
-import org.junit.After;
+package br.ce.marcos.teste;
+import static br.ce.marcos.core.DriverFactory.getDriver;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 
-public class TesteCadastro {
+import br.ce.marcos.core.BaseTest;
+import br.ce.marcos.page.CampoTreinamentoPage;
 
-	private WebDriver driver;
+public class TesteCadastro extends BaseTest {
+
 	private CampoTreinamentoPage page;
 	
 	@Before
 	public void inicializa() {
-		driver = new EdgeDriver();
-		driver.manage().window().setSize(new Dimension(1000, 720));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		page = new CampoTreinamentoPage(driver);
-	}
-
-	@After
-	public void finaliza() {
-		driver.quit();
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		page = new CampoTreinamentoPage();
 	}
 
 	@Test

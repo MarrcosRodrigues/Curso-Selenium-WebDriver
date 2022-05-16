@@ -1,8 +1,10 @@
+package br.ce.marcos.teste;
+import static br.ce.marcos.core.DriverFactory.getDriver;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,14 +12,14 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+
+import br.ce.marcos.core.BaseTest;
+import br.ce.marcos.core.DSL;
+import br.ce.marcos.page.CampoTreinamentoPage;
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadrasto {
+public class TesteRegrasCadrasto extends BaseTest {
 
-	private WebDriver driver;
 	private DSL dsl;
 	private CampoTreinamentoPage page;
 
@@ -36,16 +38,9 @@ public class TesteRegrasCadrasto {
 
 	@Before
 	public void inicializa() {
-		driver = new EdgeDriver();
-		driver.manage().window().setSize(new Dimension(1000, 720));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
-		page = new CampoTreinamentoPage(driver);
-	}
-
-	@After
-	public void finaliza() {
-		driver.quit();
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
+		page = new CampoTreinamentoPage();
 	}
 
 	@Parameters
